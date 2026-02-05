@@ -1,8 +1,14 @@
 from flask import Flask, Blueprint
-from flask_restplus import Api, Resource
-from flasgger import Swagger
+# Используется flask_restplus, который уже содержит встроенный swagger
+from flask_restplus import Api, Resource, fields 
+from flasgger import Swagger # Импортируем Flasgger
 
 app = Flask(__name__)
+
+# Flasgger автоматически использует спецификацию, сгенерированную flask-restplus
+swagger = Swagger(app) 
+# --------------------------
+
 api = Api(app = app)
 # описание главного блока нашего API http://127.0.0.1:5000/main/.
 name_space = api.namespace('main', description='Main APIs')
@@ -16,7 +22,6 @@ class MainClass(Resource):
 from part.part import api as partns1
 api.add_namespace(partns1)
 
-from flask_restplus import fields
 # определение модели данных массива
 list_ = api.model('list', {
       'len': fields.String(required=True, description='Size of array'),
