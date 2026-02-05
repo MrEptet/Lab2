@@ -1,5 +1,6 @@
 from flask import Flask, Blueprint
 from flask_restplus import Api, Resource
+from flasgger import Swagger
 
 app = Flask(__name__)
 api = Api(app = app)
@@ -62,4 +63,5 @@ from part.parttmpl import api as partns2
 from part.parttmpl import templ as templ
 api.add_namespace(partns2)
 app.register_blueprint(templ,url_prefix='/templ')
-app.run(debug=True)
+if __name__ == "__main__":
+  app.run(debug=True)
