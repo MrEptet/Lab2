@@ -1,0 +1,18 @@
+@app.route('/hello/<name>', methods=['GET'])
+def hello(name):
+    """
+    Пример конечной точки, возвращающей приветствие.
+    ---
+    parameters:
+      - name: name
+        in: path
+        type: string
+        required: true
+        default: World
+    responses:
+      200:
+        description: Приветствие
+        examples:
+          application/json: "Hello, World!"
+    """
+    return {"message": f"Hello, {name}!"}
